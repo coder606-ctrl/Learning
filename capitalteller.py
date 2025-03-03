@@ -1,5 +1,5 @@
 from dictionary import capitals
-
+# IMPORTANT, MAKE SURE TO ALSO USE THE DICTIONARY.PY FILE FOR THIS PROGRAMME, IT WON'T WORK OTHERWISE. YOU COULD ALSO MAKE YOUR OWN.
 
 continents = [
     "Asia",
