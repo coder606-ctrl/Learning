@@ -1,32 +1,50 @@
 from dictionary import capitals
-# IMPORTANT, MAKE SURE TO ALSO USE THE DICTIONARY.PY FILE FOR THIS PROGRAMME, IT WON'T WORK OTHERWISE. YOU COULD ALSO MAKE YOUR OWN.
 
 continents = [
     "Asia",
     "Africa",
+    "Europe",
     "North America",
     "South America",
-    "Europe",
-    "Antarctica",
-    "Oceania",
+    "Australia",
+    "Antarctica"
 ]
 
+print("Welcome to the Capital Teller!")
+print("I can tell you the capital of any country in the world.")
+print("Type exit to quit the program.\n")
 
-def capitalteller():
-    print("Welcome to the Capital Teller!")
-    print("I can tell you the capital of almost any country in the world.")
-    print("Type 'exit' to quit.")
+def capital_teller():
     while True:
-        country = input("Enter a country: ")
-        if country in ['exit', 'quit']:
-            break
-        if country in capitals:
-            print(f"The capital of {country} is {capitals[country]}.")
-        elif country in continents:
-            print(f"{country} is a continent. Please enter a country.")
-            break
-        else:
-            print("I'm sorry, I don't know the capital of that country. Try respelling it, if it still doesn't work I don't know the capital.")
-    print("Goodbye!")
+        try:
+            country = input("Enter the name of a country: ")
 
-capitalteller()
+            if country == "exit":
+                print("Thanks for using the Capital Teller!")
+                break
+
+            if country in capitals:
+                print(f"The capital of {country} is {capitals[country]}.")
+
+                again = input("Do you want to know the capital of another country? (y/n): ")
+
+                if again in ["y", "Y", "yes", "Yes", "YES"]:
+                    continue
+                elif again in ["n", "N", "no", "No", "NO"]:
+                    print("Thanks for using the Capital Teller!")
+                    break
+                else:
+                    print("Invalid input. Please enter y or n.")
+
+            elif country in continents:
+                print(f"{country} is a continent, not a country. Please enter a valid country name.")
+            else:
+                print(f"Sorry, I don't know the capital of {country}. Try respelling it or check if it exists.")
+        except KeyboardInterrupt:
+            print("\nProgram ended. Thanks for using the Capital Teller!")
+            break
+
+if __name__ == "__main__":
+    capital_teller()
+            
+                
