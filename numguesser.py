@@ -1,39 +1,60 @@
 import random
 
-def numGuesser():
-    secNum = random.randint(1, 100)
-    
-    print("Welcome to the Number Guesser Game!")
-    print("I have selected a number between 1 and 100.")
-    print("Try to guess the number in as few attempts as possible.")
-    
+print("Welcome to the Number Guesser!")
+print("I'm thinking of a number between 1 and 100.")
+print("Try to guess it in as few attempts as possible.")
+print("Type 0 to quit.\n")
+
+
+def number_guesser():
+    secN = random.randint(1, 100)
+    attempts = 0
+    print(secN) # Debugging line
     while True:
         try:
-            guess = int(input("Enter your guess or type 0 to exit: "))
+            guess = int(input("Enter your guess: "))
 
             if guess == 0:
-                print("Goodbye!")
+                print("Thanks for playing!")
                 break
-            elif guess < secNum:
-                print("Higher!")
-            elif guess > secNum:
-                print("Lower!")
-            else:
-                print("Congratulations! You guessed the number!")
+
+            attempts += 1
+
+            if guess < secN:
+                print("Too low! Try again.")
+            elif guess > secN:
+                print("Too high! Try again.")
+
+            elif guess == secN and attempts == 1:
+                print(f"Congratulations! You guessed the number in {attempts} attempt.")
+                again = input("Do you want to play again? (yes/no): ").strip()
+
+                if again in ["no", "No", "NO", "n", "N"]:
+                    print("Thanks for playing!")
+                    break
+                elif again in ["yes", "Yes", "YES", "y", "Y"]:
+                    secN = random.randint(1, 100)
+                    print(secN) # Debugging line
+                    attempts = 0
+                    continue
+            elif guess == secN and attempts > 1:
+                print(f"Congratulations! You guessed the number in {attempts} attempts.")
                 
-                again = input("Would you like to play again? (y/n): ")
-                if again.lower() in ['y', 'yes']:
-                    secNum = random.randint(1, 100)
-                    print("I have selected a number between 1 and 100.")
-                    print("Try to guess the number in as few attempts as possible.")
-                elif again.lower() in ['n', 'no']:
-                    print("Goodbye!")
+                again = input("Do you want to play again? (yes/no): ").strip()
+
+                if again in ["no", "No", "NO", "n", "N"]:
+                    print("Thanks for playing!")
                     break
+                elif again in ["yes", "Yes", "YES", "y", "Y"]:
+                    secN = random.randint(1, 100)
+                    print(secN) # Debugging line
+                    attempts = 0
+                    continue
                 else:
-                    print("Invalid input. Goodbye.")
+                    print("Invalid input. Exiting program...")
                     break
-
         except ValueError:
-            print("Invalid input. Please enter a number between 1 and 100.")
+            print("Invalid input. Please enter a valid number.")
 
-numGuesser()
+if __name__ == "__main__":
+    number_guesser()
